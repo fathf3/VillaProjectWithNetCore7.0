@@ -1,0 +1,50 @@
+﻿@model CreateDealDto
+@{
+    ViewData["Title"] = "Yeni Teklif Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12">
+    <div class="card">
+        <div class="mt-3">
+
+
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger mb-2"></div>
+                <label>Ev Tipi</label>
+                <input type="text" asp-for="HouseType" class="form-control" />
+                <br />
+                <label>Resim Link</label>
+                <input type="text" asp-for="ImageUrl" class="form-control" />
+                <br />
+                <label>Başlık</label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <br />
+                <label>Alan</label>
+                <input type="text" asp-for="Square" class="form-control" />
+                <br />
+                
+                <label>Kat Sayısı</label>
+                <input type="text"  asp-for="Floor" class="form-control" />
+                <br />
+                <label>Oda Sayısı</label>
+                <input type="number" asp-for="RoomCount" class="form-control" />
+                <br />
+                <label>Ödeme Şekli</label>
+                <input type="text" asp-for="PaymentType" class="form-control" />
+                <br />
+                <label>Park Alanı</label>
+                <select asp-for="HasParkingArea" class="form-control">
+                   
+                    <option value="true">Var</option>
+                    <option value="false">Yok</option>
+                </select>
+                <br /> 
+                
+                <label>Açıklama</label>
+                <input type="text" asp-for="Description" class="form-control" />
+                <br />
+                <button class="btn btn-outline-dark">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

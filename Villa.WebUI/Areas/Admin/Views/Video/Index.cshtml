@@ -1,0 +1,52 @@
+﻿@model List<ResultVideoDto>
+@{
+    ViewData["Title"] = "Video Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int counter = 0;
+}
+
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Video Url</th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            counter++;
+                            <tr>
+                                <th>@counter</th>
+                                <th>@item.VideoUrl</th>
+                               
+                                <td>
+                                    <button onclick="deleteDeal(this)" controllerName="Video" id="@item.Id" class="m-1 badge badge-danger">Sil</button>
+                                    <a asp-controller="Video" asp-action="Update" asp-route-id="@item.Id" class="m-1 badge badge-info">Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <div class="col-lg-3 mt-2">
+                            <a asp-controller="Video" asp-action="Create" class="mb-3 btn btn-outline-dark">Yeni Video Ekle</a>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/admin-focus/js/deleteItem.js"></script>
+
+
+

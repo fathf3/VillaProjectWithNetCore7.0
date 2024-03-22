@@ -1,0 +1,60 @@
+﻿@model List<ResultProductDto>
+@{
+    ViewData["Title"] = "Product Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int counter = 0;
+}
+
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Başlık</th>
+                            <th>Alan</th>
+                            <th>Kategori</th>
+                           
+                            <th>Oda Sayısı</th>
+                            <th>Banya Sayısı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            counter++;
+                            <tr>
+                                <th>@counter</th>
+                                <th>@item.Title</th>
+                                <td>@item.Area</td>
+                                <td>@item.Category</td>
+                                <td>@item.BedRoomCount</td>
+                                <td>@item.BathRoomCount</td>
+                                <td>
+                                    <button onclick="deleteDeal(this)" controllerName="Product" id="@item.Id" class="m-1 badge badge-danger">Sil</button>
+                                    <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="m-1 badge badge-info">Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <div class="col-lg-3 mt-2">
+                            <a asp-controller="Product" asp-action="Create" class="mb-3 btn btn-outline-dark">Yeni Product Ekle</a>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/admin-focus/js/deleteItem.js"></script>
+
+
+

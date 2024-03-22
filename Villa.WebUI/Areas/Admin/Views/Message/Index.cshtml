@@ -1,0 +1,57 @@
+﻿@model List<ResultMessageDto>
+@{
+    ViewData["Title"] = "Message Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int counter = 0;
+}
+
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>İsim</th>
+                            <th>E-Posta</th>
+                            <th>Konu</th>
+                            <th>Tarih</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            counter++;
+                            <tr>
+                                <th>@counter</th>
+                                <th>@item.Name</th>
+                                <th>@item.Email</th>
+                                <td>@item.Subject</td>
+                                <td>@item.MessageDate.ToString("dd/M/yyyy")</td>    
+                                <td>
+                                    <button onclick="deleteDeal(this)" controllerName="Message" id="@item.Id" class="m-1 badge badge-danger">Sil</button>
+                                    <a asp-controller="Message" asp-action="Update" asp-route-id="@item.Id" class="m-1 badge badge-info">Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <div class="col-lg-3 mt-2">
+                            <a asp-controller="Message" asp-action="Create" class="mb-3 btn btn-outline-dark">Yeni Message Ekle</a>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/admin-focus/js/deleteItem.js"></script>
+
+
+

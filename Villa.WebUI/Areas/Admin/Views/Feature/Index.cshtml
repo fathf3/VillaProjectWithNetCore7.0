@@ -1,0 +1,61 @@
+﻿@model List<ResultFeatureDto>
+@{
+    ViewData["Title"] = "Feature Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int counter = 0;
+}
+
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Görsel</th>
+                            <th>Başlık</th>
+                            <th>Alt Başlık</th>
+                            <th>Alan</th>
+                            <th>Ödeme</th>
+                            <th>Güvenlik</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            counter++;
+                            <tr>
+                                <th>@counter</th>
+                                <th><img src="@item.ImageUrl" style="height:50px; width:50px" /></th>
+                                <th>@item.Title</th>
+                                <td>@item.SubTitle</td>
+                                <td>@item.Square</td>
+                                <td>@item.Payment</td>
+                                <td>@item.Safety</td>
+                                <td>
+                                    <button onclick="deleteDeal(this)" controllerName="Feature" id="@item.Id" class="m-1 badge badge-danger">Sil</button>
+                                    <a asp-controller="Feature" asp-action="Update" asp-route-id="@item.Id" class="m-1 badge badge-info">Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <div class="col-lg-3 mt-2">
+                            <a asp-controller="Feature" asp-action="Create" class="mb-3 btn btn-outline-dark">Yeni Feature Ekle</a>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/admin-focus/js/deleteItem.js"></script>
+
+
+
